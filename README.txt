@@ -1,9 +1,10 @@
 Para ejecutar: npm run dev
 	localhost:4000
+	localhost:4000/api/languages
 
-Para iniciar la base de datos, leer el README en MySQL-Docker
-
-Si van a hacer commit, eliminar "MySQL-Docker/datos/mysql.sock" si es que existe, da problemas por alguna razon
+Para ingresar a la base de datos:
+	144.22.34.87:8080
+	credenciales en .env
 
 
 Esta listo hasta el min 45 del video https://www.youtube.com/watch?v=dkic3MU3858
