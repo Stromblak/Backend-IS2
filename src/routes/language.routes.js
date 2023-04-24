@@ -3,6 +3,9 @@ import {methods as languageController} from "./../controllers/language.controlle
 
 const router=Router();
 
-router.get("/", languageController.getLanguage);
-
+router.get("/", languageController.getLanguages);
+router.get("/:idRep", languageController.getLanguage);
+router.delete("/:idRep", languageController.deleteLanguage);
+router.post("/", languageController.addLanguage);
+router.put("/:idRep", languageController.updateLanguage);
 export default router;
