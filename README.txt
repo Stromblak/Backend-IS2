@@ -1,6 +1,6 @@
 Para ejecutar: npm run dev
 	localhost:4000
-	localhost:4000/api/languages
+	localhost:4000/api/reportes
 
 Para ingresar a la base de datos:
 	144.22.34.87:8080

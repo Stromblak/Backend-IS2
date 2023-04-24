@@ -2,7 +2,7 @@ import express from "express";
 import morgan from "morgan";
 
 // Routes
-import languageRoutes  from "./routes/language.routes";
+import reporteRoutes  from "./routes/reporte.routes";
 
 const app = express();
 
@@ -12,7 +12,8 @@ app.set("port", 4000);
 // Middlewares
 app.use(morgan("dev"));
 app.use(express.json());
+
 // Routes
-app.use("/api/languages", languageRoutes);
+app.use("/api/reportes", reporteRoutes);
 
 export default app;
