@@ -7,4 +7,4 @@ Para ingresar a la base de datos:
 	credenciales en .env
 
 
-Esta listo hasta el min 45 del video https://www.youtube.com/watch?v=dkic3MU3858
+Basado en: https://www.youtube.com/watch?v=dkic3MU3858
