@@ -54,9 +54,9 @@ const updateReporte = async (req, res) => {
 			res.status(400).json({ message: "Error en el reporte. Porfavor rellene todos los campos." });
 		}
 
-		const reporte = {titulo, descripcion, pasos, estado}; 
+		//const reporte = {titulo, descripcion, pasos, estado}; 
 		const connection = await getConnection();
-		const result = await connection.query("UPDATE Reportes SET estado = ? WHERE idRep = ?", [reporte, idRep]);
+		const result = await connection.query("UPDATE Reportes SET estado = ? WHERE idRep = ?", [estado, idRep]);
 		res.json(result);
 
 	}catch(error){
