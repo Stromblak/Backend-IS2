@@ -5,7 +5,7 @@ const router=Router();
 
 router.get("/", reporteController.getReportes);
 router.get("/:idRep", reporteController.getReporte);
-router.delete("/:idRep", reporteController.deleteReporte);
 router.post("/", reporteController.addReporte);
 router.put("/:idRep", reporteController.updateReporte);
+router.delete("/:idRep", reporteController.deleteReporte);
 export default router;

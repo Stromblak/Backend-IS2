@@ -33,7 +33,7 @@ const addReporte = async (req, res) => {
 			res.status(400).json({ message: "Error en el reporte. Porfavor rellene todos los campos." });
 		}
 
-		const reporte={idRep, titulo, descripcion, pasos, estado};
+		const reporte={correo, titulo, descripcion, pasos};
 		const connection = await getConnection();
 		const result = await connection.query("INSERT INTO Reportes SET ?", reporte);
 		res.json(result);
