@@ -3,6 +3,7 @@ import morgan from "morgan";
 
 // Routes
 import reporteRoutes  from "./routes/reporte.routes";
+import usuarioRoutes  from "./routes/usuario.routes";
 
 const app = express();
 
