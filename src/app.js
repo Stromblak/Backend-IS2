@@ -15,5 +15,6 @@ app.use(express.json());
 
 // Routes
 app.use("/api/reportes", reporteRoutes);
+//app.use("/api/usuarios", usuarioRoutes);          //TODO: implementando...
 
 export default app;
