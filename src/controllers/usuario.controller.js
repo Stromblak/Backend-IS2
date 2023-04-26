@@ -1,5 +1,5 @@
 import {getConnection} from "../database/database";
-/*
+
 const getUsuarios = async (req, res) => {
 	try{
 		const connection = await getConnection();
@@ -11,7 +11,7 @@ const getUsuarios = async (req, res) => {
 		res.send(error.message);
 	}
 };
-*/
+
 const getUsuario = async (req, res) => {	// FUNCIONANDO
 	try{
 		const {correo} = req.params;
@@ -21,10 +21,11 @@ const getUsuario = async (req, res) => {	// FUNCIONANDO
 
 	}catch(error){
 		res.status(500);
-		res.send("Error 404: Usuario no encontrado");
+		res.send(error.message);
 	}
 };
-/*
+
+
 const addUsuario = async (req, res) => {
 	try{
 		const {correo, hash} = req.body;
@@ -42,8 +43,7 @@ const addUsuario = async (req, res) => {
 		res.send(error.message);
 	}
 };
-*/
-/*
+
 // Para actualizar clave de Usuario
 const updateUsuario = async (req, res) => {
 	try{
@@ -63,8 +63,7 @@ const updateUsuario = async (req, res) => {
 		res.send(error.message);
 	}
 };
-*/
-/*
+
 // Eliminar Usuario de la Base de Datos
 const deleteUsuario = async (req, res) => {
 	try{
@@ -78,11 +77,11 @@ const deleteUsuario = async (req, res) => {
 		res.send(error.message);
 	}
 };
-*/
+
 export const methods = {
-	//getUsuarios,
+	getUsuarios,
 	getUsuario,
-	//addUsuario,
-	//updateUsuario,
-	//deleteUsuario
+	addUsuario,
+	updateUsuario,
+	deleteUsuario
 };
