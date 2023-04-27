@@ -78,7 +78,8 @@ const deleteUsuario = async (req, res) => {
 	}
 };
 
-const verifyUsuario = async (req, res) => {		// TODO: Implementar verify
+// Verificacion de Usuario para Login
+const verifyUsuario = async (req, res) => {
 	try{
 		const {correo, hash} = req.body;
 		if (correo === undefined || hash === undefined) {
@@ -86,9 +87,8 @@ const verifyUsuario = async (req, res) => {		// TODO: Implementar verify
 		}
 
 		const connection = await getConnection();
-		const result = await connection.query("SELECT correo AND hash FROM Usuarios WHERE correo = ? AND hash = ?", [correo, hash]);
-		res.json(result);
-
+		const result = await connection.query("SELECT * FROM Usuarios WHERE correo = ? AND hash = ?", [correo, hash]);
+		(result[0] === undefined) ? res.json(false) : res.json(true);
 	}catch(error){
 		res.status(500);
 		res.send(error.message);
