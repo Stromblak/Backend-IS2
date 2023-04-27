@@ -12,7 +12,7 @@ const getUsuarios = async (req, res) => {
 	}
 };
 
-const getUsuario = async (req, res) => {	// FUNCIONANDO
+const getUsuario = async (req, res) => {
 	try{
 		const {correo} = req.params;
 		const connection = await getConnection();
@@ -78,10 +78,28 @@ const deleteUsuario = async (req, res) => {
 	}
 };
 
+const verifyUsuario = async (req, res) => {
+	try{
+		const {correo, hash} = req.body;
+		if (correo === undefined || hash === undefined) {
+			res.status(400).json({ message: "Error al buscar usuario. Porfavor rellene todos los campos." });
+		}
+
+		const connection = await getConnection();
+		const result = await connection.query("SELECT correo FROM Usuarios WHERE correo = ? AND hash = ?", [correo, hash]);
+		res.json(result);
+
+	}catch(error){
+		res.status(500);
+		res.send(error.message);
+	}
+};
+
 export const methods = {
 	getUsuarios,
 	getUsuario,
 	addUsuario,
 	updateUsuario,
-	deleteUsuario
+	deleteUsuario,
+	verifyUsuario
 };

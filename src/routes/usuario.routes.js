@@ -8,4 +8,5 @@ router.get("/:correo", usuarioController.getUsuario);           // No es lo mejo
 router.post("/", usuarioController.addUsuario);
 router.put("/:correo", usuarioController.updateUsuario);
 router.delete("/:correo", usuarioController.deleteUsuario);
+router.get("/verify", usuarioController.verifyUsuario);
 export default router;

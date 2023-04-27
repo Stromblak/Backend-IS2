@@ -17,7 +17,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 // Routes
-app.use("/api/usuarios", usuarioRoutes);          //TODO: implementando...
+app.use("/api/usuarios", usuarioRoutes);
 app.use("/api/reportes", reporteRoutes);
 app.use("/api/archivos", archivoRoutes);
 
