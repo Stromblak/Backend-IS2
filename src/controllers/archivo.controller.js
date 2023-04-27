@@ -14,11 +14,21 @@ const getArchivo = async (req, res) => {
 	}
 };
 
-// el id es automatico 
+// solo se necesita el archivo y correo 
 const addArchivo = async (req, res) => {
 	try{
-		// se necesita idRep 
+		const {correo} = req.body;	
+		const connection = await getConnection();
+		const result = await connection.query("SELECT ultimo_idRep FROM Usuarios WHERE correo = ?", correo);
+		const idRep = result[0]["ultimo_idRep"];
 
+		// codigo para subir el archivo
+
+
+
+		console.log(idRep);
+
+		res.json(result);
 
 	}catch(error){
 		res.status(500);

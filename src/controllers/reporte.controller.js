@@ -25,7 +25,7 @@ const getReporte = async (req, res) => {
 	}
 };
 
-// el id y estado es automatico 
+// el idRep y estado es automatico 
 const addReporte = async (req, res) => {
 	try{
 		const {correo, titulo, descripcion, pasos} = req.body;
@@ -36,8 +36,14 @@ const addReporte = async (req, res) => {
 		const reporte={correo, titulo, descripcion, pasos};
 		const connection = await getConnection();
 		const result = await connection.query("INSERT INTO Reportes SET ?", reporte);
+
+		//	esto deberia servir para la subida de archivos, fue lo unico que se me ocurrio
+		const id = result["insertId"];
+		await connection.query("UPDATE Usuarios SET ultimo_idRep = ? WHERE correo = ?", [id, correo]);
+
 		res.json(result);
 
+		
 	}catch(error){
 		res.status(500);
 		res.send(error.message);
