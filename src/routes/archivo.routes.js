@@ -3,7 +3,7 @@ import {methods as archivoController} from "../controllers/archivo.controller";
 
 const router=Router();
 
-router.get("/:idRep", archivoController.getArchivo);
+router.get("/:idArc", archivoController.getArchivo);
 router.post("/", archivoController.addArchivo);
-router.delete("/:idRep", archivoController.deleteArchivo);
+router.delete("/:idArc", archivoController.deleteArchivo);
 export default router;
