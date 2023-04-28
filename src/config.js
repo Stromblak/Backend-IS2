@@ -2,8 +2,6 @@ import { config } from "dotenv";
 
 config();
 
-console.log(process.env)
-
 export default {
     host: process.env.HOST || "",
     database: process.env.DATABASE || "",
