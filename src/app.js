@@ -6,7 +6,6 @@ import usuarioRoutes from "./routes/usuario.routes";
 import reporteRoutes from "./routes/reporte.routes";
 import archivoRoutes from "./routes/archivo.routes";
 
-
 const app = express();
 
 // Settings
