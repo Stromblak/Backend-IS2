@@ -14,23 +14,24 @@ const getArchivo = async (req, res) => {
 	}
 };
 
-// solo se necesita el archivo y correo 
+//	solo se necesita el archivo y correo
+//	idArc es automatico, idRep se consigue con el correo para facilitar el trabajo al frontend
+//	ejecutar solo despues de insertar un nuevo reporte
 const addArchivo = async (req, res) => {
 	try{
-		const { idArc, idRep, archivo } = req.body;
-		if (idArc === undefined || idRep === undefined) {
+		const { correo, archivo } = req.body;
+		if (correo === undefined || archivo === undefined) {
 			res.status(400).json({ message: "Error en el reporte. Porfavor rellene todos los campos." });
 		}
-		const file = { idArc, idRep, archivo };	
 		const connection = await getConnection();
+
+		// busqueda de idRep
+		const resultId = await connection.query("SELECT ultimo_idRep FROM Usuarios WHERE correo = ?", correo);
+		const idRep = resultId[0]["ultimo_idRep"];
+	
+		const file = { idRep, archivo };	
 		const result = await connection.query("INSERT INTO Archivos SET = ?", file);
-		//const idRep = result[0]["ultimo_idRep"];
 
-		// codigo para subir el archivo
-
-
-
-		console.log(idRep);
 
 		res.json(result);
 
