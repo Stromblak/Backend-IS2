@@ -4,7 +4,8 @@ Para ejecutar: npm run dev
 
 Para ingresar a la base de datos:
 	144.22.34.87:8080
-	credenciales en .env
+	root
+	zSzCrCu(zn;K=pD
 
 
 Basado en: https://www.youtube.com/watch?v=dkic3MU3858
