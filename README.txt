@@ -1,4 +1,7 @@
-Para ejecutar: npm run dev
+npm install		Para installar packetes
+npm run dev		Para ejecutar
+
+Para probar:
 	localhost:4000
 	localhost:4000/api/reportes
 
@@ -7,8 +10,8 @@ Para ingresar a la base de datos:
 	root
 	zSzCrCu(zn;K=pD
 	
+	
 .env :
-
 HOST=144.22.34.87
 DATABASE=IS2
 DB_USER=root
