@@ -9,6 +9,7 @@ Para ingresar a la base de datos:
 	144.22.34.87:8080
 	root
 	zSzCrCu(zn;K=pD
+	IS2
 	
 	
 .env :
