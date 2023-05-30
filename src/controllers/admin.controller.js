@@ -2,7 +2,7 @@ import {getConnection} from "../database/database";
 
 const getDesarrolladores = async (req, res) => {
 	try{
-		const {software} = req.params;
+		const {software} = req.body;
 		const connection = await getConnection();
 		const result = await connection.query("SELECT correoDev FROM haDesarrollado WHERE software = ?", software);
 		res.json(result);
