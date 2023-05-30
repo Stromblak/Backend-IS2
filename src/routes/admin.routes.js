@@ -3,7 +3,6 @@ import {methods as adminController} from "../controllers/admin.controller";
 
 const router=Router();
 
-router.get("/:idArc", archivoController.getArchivo);
-router.post("/", archivoController.addArchivo);
-router.delete("/:idArc", archivoController.deleteArchivo);
+router.get("/:software", adminController.getDesarrolladores);
+router.post("/assign", adminController.asignarReporte);
 export default router;
