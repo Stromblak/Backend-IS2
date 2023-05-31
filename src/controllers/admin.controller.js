@@ -31,7 +31,47 @@ const asignarReporte = async (req, res) => {
 	}
 };
 
+const getSoftware = async (req, res) => {
+	try {
+		const connection = await getConnection();
+		const result = await connection.query("SELECT * FROM Softwares");
+		res.json(result);
+	} catch(error) {
+		res.status(500);
+		res.send(error.message);
+	}
+};
+
+const getReportesAsignados = async (req, res) => {
+	try {
+		const connection = await getConnection();
+		const result = await connection.query("SELECT idRep, correoDev FROM asignadoA");
+		res.json(result);
+	} catch(error) {
+		res.status(500);
+		res.send(error.message);
+	}
+};
+
+const getAsignadosDev = async (req, res) => {
+	try {
+		const {correoDev} = req.param;
+		if (correoDev === undefined) {
+			res.status(400).json({ message: "Falta el correo del desarollador." });
+		}
+		const connection = await getConnection();
+		const result = await connection.query("SELECT * FROM asignadoA WHERE reporteListo = 0 AND correoDev = ?", correoDev);
+		res.json(result);
+	} catch(error) {
+		res.status(500);
+		res.send(error.message);
+	}
+};
+
 export const methods = {
 	getDesarrolladores,
     asignarReporte,
+	getSoftware,
+	getReportesAsignados,
+	getAsignadosDev
 };
