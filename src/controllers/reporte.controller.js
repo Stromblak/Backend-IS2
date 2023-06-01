@@ -12,6 +12,19 @@ const getReportes = async (req, res) => {
 	}
 };
 
+const getReportesUsuario = async (req, res) => {
+	try{
+		const {correo} = req.params;
+		const connection = await getConnection();
+		const result = await connection.query("SELECT * FROM Reportes WHERE correo = ?", correo);
+		res.json(result);
+
+	}catch(error){
+		res.status(500);
+		res.send(error.message);
+	}
+};
+
 const getReporte = async (req, res) => {
 	try{
 		const {idRep} = req.params;
@@ -90,5 +103,6 @@ export const methods = {
 	getReporte,
 	addReporte,
 	updateReporte,
-	deleteReporte
+	deleteReporte,
+	getReportesUsuario
 };
