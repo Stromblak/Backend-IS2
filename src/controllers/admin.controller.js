@@ -20,9 +20,8 @@ const asignarReporte = async (req, res) => {
 			res.status(400).json({ message: "Faltan datos por ingresar." });
 		}
 
-		const asignacion = {idRep, correoDev};
 		const connection = await getConnection();
-		const result = await connection.query("INSERT INTO asignadoA SET ?", asignacion);
+		const result = await connection.query("INSERT INTO asignadoA(idRep, correoDev) VALUES(?, ?)", idRep, correoDev);
 		res.json(result);
 
 	}catch(error){
