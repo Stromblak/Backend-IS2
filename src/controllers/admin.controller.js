@@ -16,12 +16,12 @@ const getDesarrolladores = async (req, res) => {
 const asignarReporte = async (req, res) => {
 	try{
 		const {idRep, correoDev} = req.body;
-		if (idRep === undefined || correoDev === undefined) {
+		if (correoDev === undefined) {
 			res.status(400).json({ message: "Faltan datos por ingresar." });
 		}
-
 		const connection = await getConnection();
-		const result = await connection.query("INSERT INTO asignadoA(idRep, correoDev) VALUES(?, ?)", idRep, correoDev);
+		var sql = "INSERT INTO asignadoA (idRep, correoDev) VALUES (" + idRep + ", \"" + correoDev + "\")";
+		const result = await connection.query(sql);
 		res.json(result);
 
 	}catch(error){
