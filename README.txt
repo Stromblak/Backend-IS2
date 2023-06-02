@@ -5,6 +5,8 @@ Para probar:
 	localhost:4000
 	localhost:4000/api/reportes
 
+API: http://144.22.54.130:4000/
+
 Para ingresar a la base de datos:
 	144.22.34.87:8080
 	root
