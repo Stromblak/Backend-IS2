@@ -8,7 +8,7 @@ Para probar:
 API: http://144.22.54.130:4000/
 
 Para ingresar a la base de datos:
-	144.22.34.87:8080
+	http://144.22.34.87:8080/
 	root
 	zSzCrCu(zn;K=pD
 	IS2
