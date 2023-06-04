@@ -69,6 +69,18 @@ const getAsignadosDev = async (req, res) => {
 
 const getDevsOf = async (req, res) => {
 	try {
+		const { correoDev } = req.params
+		const connection = await getConnection();
+		const result = await connection.query(`SELECT * FROM Devs WHERE correoDev="${correoDev}")`);
+		res.json(result);
+	} catch (error) {
+		res.status(500);
+		res.send(error.message);
+	}
+};
+
+const getDev = async (req, res) => {
+	try {
 		const { software } = req.query
 		const connection = await getConnection();
 		const result = await connection.query(`SELECT * FROM Devs WHERE correoDev IN (SELECT correoDev FROM haDesarrollado WHERE software="${software}")`);
@@ -85,5 +97,6 @@ export const methods = {
 	getSoftware,
 	getReportesAsignados,
 	getAsignadosDev,
-	getDevsOf
+	getDevsOf,
+	getDev
 };
