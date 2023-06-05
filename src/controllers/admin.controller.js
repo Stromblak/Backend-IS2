@@ -2,9 +2,21 @@ import { getConnection } from "../database/database";
 
 const getDesarrolladores = async (req, res) => {
 	try {
-		const { software } = req.body;
+		const { software } = req.params;
 		const connection = await getConnection();
 		const result = await connection.query("SELECT correoDev FROM haDesarrollado WHERE software = ?", software);
+		res.json(result);
+
+	} catch (error) {
+		res.status(500);
+		res.send(error.message);
+	}
+};
+
+const getAllDevs = async (req, res) => {
+	try {
+		const connection = await getConnection();
+		const result = await connection.query("SELECT * FROM Devs");
 		res.json(result);
 
 	} catch (error) {
@@ -29,6 +41,23 @@ const asignarReporte = async (req, res) => {
 		res.send(error.message);
 	}
 };
+
+const agregarDev = async (req, res) => {
+	try {
+		const { nombre, apellido, correoDev, hash, esAdmin } = req.body;
+		if (!nombre || !apellido || !correoDev || !hash) {
+			res.status(400).json({ message: 'Los campos nombre, apellido, correoDev, hash son requeridos' });
+			return;
+		}
+		const connection = await getConnection();
+		var sql = `INSERT INTO Devs (nombre, apellido, correoDev, hash, esAdmin) VALUES ('${nombre}', '${apellido}', '${correoDev}', ${hash}, ${esAdmin ? 1 : 0})`
+		const result = await connection.query(sql);
+		res.json({ message: 'Los campos nombre, apellido, correoDev, hash son requeridos' });
+	} catch (error) {
+		res.status(500);
+		res.send(error.message);
+	}
+}
 
 const getSoftware = async (req, res) => {
 	try {
@@ -67,9 +96,12 @@ const getAsignadosDev = async (req, res) => {
 	}
 };
 
-const getDevsOf = async (req, res) => {
+const getDev = async (req, res) => {
 	try {
 		const { correoDev } = req.params
+		if (correoDev === undefined) {
+			res.status(400).json({ message: "Falta el correo del desarollador." });
+		}
 		const connection = await getConnection();
 		const result = await connection.query(`SELECT * FROM Devs WHERE correoDev="${correoDev}")`);
 		res.json(result);
@@ -79,9 +111,12 @@ const getDevsOf = async (req, res) => {
 	}
 };
 
-const getDev = async (req, res) => {
+const getDevsOf = async (req, res) => {
 	try {
 		const { software } = req.query
+		if (software === undefined) {
+			res.status(400).json({ message: "Falta el software." });
+		}
 		const connection = await getConnection();
 		const result = await connection.query(`SELECT * FROM Devs WHERE correoDev IN (SELECT correoDev FROM haDesarrollado WHERE software="${software}")`);
 		res.json(result);
@@ -91,6 +126,22 @@ const getDev = async (req, res) => {
 	}
 };
 
+const getEncargadoDe = async (req, res) => {
+	try {
+		const { idRep } = req.query;
+		console.log(idRep);
+		if (idRep === undefined) {
+			res.status(400).json({ message: "Falta el idRep." });
+		}
+		const connection = await getConnection();
+		const result = await connection.query("SELECT * FROM Devs WHERE correoDev IN (SELECT correoDev FROM asignadoA WHERE idRep=?)", idRep);
+		res.json(result);
+	} catch (error) {
+		res.status(500);
+		res.send(error.message);
+	}
+}
+
 export const methods = {
 	getDesarrolladores,
 	asignarReporte,
@@ -98,5 +149,8 @@ export const methods = {
 	getReportesAsignados,
 	getAsignadosDev,
 	getDevsOf,
-	getDev
+	getDev,
+	agregarDev,
+	getAllDevs,
+	getEncargadoDe
 };
