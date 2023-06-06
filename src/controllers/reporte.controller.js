@@ -110,6 +110,41 @@ const deleteReporte = async (req, res) => {
 	}
 };
 
+// addAvance 
+const addAvance = async (req, res) => {
+	try {
+		const { idRep, correoDev } = req.body;
+		if (idRep === undefined || correoDev === undefined) {
+			res.status(400).json({ message: "Error en el avance. Por favor, rellene todos los campos." });
+		}
+
+		const avance = { idRep, correoDev };
+		const connection = await getConnection();
+		const result = await connection.query("INSERT INTO Avances SET ?", avance);
+
+		res.json(result);
+
+	} catch (error) {
+		res.status(500);
+		res.send(error.message);
+	}
+};
+
+//getAvance
+const getAvance = async (req, res) => {
+	try {
+		const { idRep } = req.params;
+		const connection = await getConnection();
+		const result = await connection.query("SELECT idAvance, correoDev, fecha FROM Avances WHERE idRep = ?", idRep);
+		res.json(result);
+
+	} catch (error) {
+		res.status(500);
+		res.send(error.message);
+	}
+};
+
+
 export const methods = {
 	getReportes,
 	getReporte,
@@ -117,5 +152,7 @@ export const methods = {
 	getReporteNoAsignados,
 	updateReporte,
 	deleteReporte,
-	getReportesUsuario
+	getReportesUsuario,
+	addAvance,
+	getAvance
 };

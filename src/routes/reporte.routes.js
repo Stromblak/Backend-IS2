@@ -10,6 +10,7 @@ router.get("/getNoAsignados", reporteController.getReporteNoAsignados);
 router.post("/addReporte", reporteController.addReporte);
 router.put("/updateReporte/:idRep", reporteController.updateReporte);
 router.delete("/deleteReporte/:idRep", reporteController.deleteReporte);
-
+router.get("/getAvance/:idRep", reporteController.getAvance);
+router.post("/addAvance", reporteController.addAvance);
 
 export default router;
