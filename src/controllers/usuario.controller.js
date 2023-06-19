@@ -88,7 +88,11 @@ const verifyUsuario = async (req, res) => {
 
 		const connection = await getConnection();
 		const result = await connection.query("SELECT * FROM Usuarios WHERE correo = ? AND hash = ?", [correo, hash]);
-		(result[0] === undefined) ? res.json(false) : res.json(true);
+		if (result[0] === undefined)
+			res.json(false)
+		else
+			result = await connection.query("SELECT * FROM Credenciales WHERE correo = ?", correo);
+			res.json(result);
 	}catch(error){
 		res.status(500);
 		res.send(error.message);
