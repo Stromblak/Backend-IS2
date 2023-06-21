@@ -83,15 +83,14 @@ const verifyUsuario = async (req, res) => {
 	try{
 		const {correo, hash} = req.body;
 		if (correo === undefined || hash === undefined) {
-			res.status(400).json({ message: "Error al buscar usuario. Porfavor rellene todos los campos." });
+			res.status(400).json({ message: "Error. Porfavor rellene todos los campos." });
 		}
 
 		const connection = await getConnection();
-		const result = await connection.query("SELECT * FROM Usuarios WHERE correo = ? AND hash = ?", [correo, hash]);
+		const result = await connection.query("SELECT * FROM Credenciales WHERE correo = ? AND hash = ?", [correo, hash]);
 		if (result[0] === undefined)
-			res.json(false)
+			res.status(400).json({ message: "Error al buscar usuario. Credenciales erroneas." });
 		else
-			result = await connection.query("SELECT * FROM Credenciales WHERE correo = ?", correo);
 			res.json(result);
 	}catch(error){
 		res.status(500);
