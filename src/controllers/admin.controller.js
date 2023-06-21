@@ -83,12 +83,13 @@ const getReportesAsignados = async (req, res) => {
 
 const getAsignadosDev = async (req, res) => {
 	try {
-		const { correoDev } = req.param;
+		const { correoDev } = req.body;
 		if (correoDev === undefined) {
 			res.status(400).json({ message: "Falta el correo del desarollador." });
+			return;
 		}
 		const connection = await getConnection();
-		const result = await connection.query("SELECT * FROM asignadoA WHERE reporteListo = 0 AND correoDev = ?", correoDev);
+		const result = await connection.query("SELECT Reportes.* FROM Reportes, asignadoA WHERE asignadoA.reporteListo = 0 AND asignadoA.correoDev = ? AND asignadoA.idRep = Reportes.idRep", correoDev);
 		res.json(result);
 	} catch (error) {
 		res.status(500);
