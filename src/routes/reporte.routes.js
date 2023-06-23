@@ -12,5 +12,6 @@ router.put("/updateReporte/:idRep", reporteController.updateReporte);
 router.delete("/deleteReporte/:idRep", reporteController.deleteReporte);
 router.get("/getAvance/:idRep", reporteController.getAvance);
 router.post("/addAvance", reporteController.addAvance);
+router.get("/getComentariosAvance/:idRep", reporteController.getComentariosAvance);
 
 export default router;
