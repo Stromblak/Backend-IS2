@@ -11,6 +11,6 @@ router.get("/software", adminController.getSoftware);
 router.get("/getDevsOf", adminController.getDevsOf);
 router.get("/getDev/:correoDev", adminController.getDev);
 router.get("/getRepsAsignados", adminController.getReportesAsignados);              // Todos los reportes ya asignados con el correo del desarrollador
-router.post("/getRepsDe", adminController.getAsignadosDev);         // Los reportes asignados a un desarrollador especifico
+router.get("/getRepsDe/:correoDev", adminController.getAsignadosDev);         // Los reportes asignados a un desarrollador especifico
 router.get("/getEncargadoDe", adminController.getEncargadoDe);
 export default router;

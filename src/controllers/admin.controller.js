@@ -83,7 +83,7 @@ const getReportesAsignados = async (req, res) => {
 
 const getAsignadosDev = async (req, res) => {
 	try {
-		const { correoDev } = req.body;
+		const { correoDev } = req.params;
 		if (correoDev === undefined) {
 			res.status(400).json({ message: "Falta el correo del desarollador." });
 			return;
